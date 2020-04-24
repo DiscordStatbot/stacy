@@ -14,7 +14,7 @@ module.exports = {
     category: 'automation',
   },
   run: async (bot, message, args, settings, ignore) => {
-    if (settings.autoModule == false) return message.channel.send('Module disabled. Type `s!module responder` to enable. Requires Admin');
+    if (!settings.autoModule) return message.channel.send('Module disabled. Type `s!module responder` to enable. Requires Admin');
     try {
       if (!message.member.hasPermission('ADMINISTRATOR') && !message.member.roles.has(settings.adminRole)) return await message.channel.send(`${bot.config.errPerm}\nYou need the \`ADMINISTRATOR\` permission or the \`Admin\` role to perform this action.`);
 

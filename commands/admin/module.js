@@ -19,14 +19,14 @@ module.exports = {
       const type = args[0];
       switch (type) {
         case 'desk': {
-          if (settings.deskModule == true) {
+          if (settings.deskModule) {
             try {
               await bot.updateGuild(message.guild, { deskModule: false });
               return await message.channel.send('The Help Desk module is now disabled.');
             } catch (error) {
               await message.channel.send(`${bot.config.errMsg} \`${error.message}\``);
             }
-          } else if (settings.deskModule == false) {
+          } else {
             try {
               await bot.updateGuild(message.guild, { deskModule: true });
               return await message.channel.send('The Help Desk module is now enabled.');
@@ -37,14 +37,14 @@ module.exports = {
           break;
         }
         case 'responder': {
-          if (settings.autoModule == true) {
+          if (settings.autoModule) {
             try {
               await bot.updateGuild(message.guild, { autoModule: false });
               return await message.channel.send('The Auto Responder module is now disabled.');
             } catch (error) {
               await message.channel.send(`${bot.config.errMsg} \`${error.message}\``);
             }
-          } else if (settings.autoModule == false) {
+          } else {
             try {
               await bot.updateGuild(message.guild, { autoModule: true });
               return await message.channel.send('The Auto Responder module is now enabled.');
@@ -55,14 +55,14 @@ module.exports = {
           break;
         }
         case 'tickets': {
-          if (settings.ticketModule == true) {
+          if (settings.ticketModule) {
             try {
               await bot.updateGuild(message.guild, { ticketModule: false });
               return await message.channel.send('The Ticket module is now disabled.');
             } catch (error) {
               await message.channel.send(`${bot.config.errMsg} \`${error.message}\``);
             }
-          } else if (settings.ticketModule == false) {
+          } else {
             try {
               await bot.updateGuild(message.guild, { ticketModule: true });
               return await message.channel.send('The Ticket module is now enabled.');
@@ -73,14 +73,14 @@ module.exports = {
           break;
         }
         case 'roles': {
-          if (settings.roleModule == true) {
+          if (settings.roleModule) {
             try {
               await bot.updateGuild(message.guild, { roleModule: false });
               return await message.channel.send('The Role module is now disabled.');
             } catch (error) {
               await message.channel.send(`${bot.config.errMsg} \`${error.message}\``);
             }
-          } else if (settings.roleModule == false) {
+          } else {
             try {
               await bot.updateGuild(message.guild, { roleModule: true });
               return await message.channel.send('The Role module is now enabled.');
@@ -91,14 +91,14 @@ module.exports = {
           break;
         }
         case 'logging': {
-          if (settings.loggingModule == true) {
+          if (settings.loggingModule) {
             try {
               await bot.updateGuild(message.guild, { loggingModule: false });
               return await message.channel.send('The Logging module is now disabled.');
             } catch (error) {
               await message.channel.send(`${bot.config.errMsg} \`${error.message}\``);
             }
-          } else if (settings.loggingModule == false) {
+          } else {
             try {
               await bot.updateGuild(message.guild, { loggingModule: true });
               return await message.channel.send('The Logging module is now enabled.');
@@ -109,14 +109,14 @@ module.exports = {
           break;
         }
         case 'snippets': {
-          if (settings.snipModule == true) {
+          if (settings.snipModule) {
             try {
               await bot.updateGuild(message.guild, { snipModule: false });
               return await message.channel.send('The Snippets module is now disabled.');
             } catch (error) {
               await message.channel.send(`${bot.config.errMsg} \`${error.message}\``);
             }
-          } else if (settings.snipModule == false) {
+          } else {
             try {
               await bot.updateGuild(message.guild, { snipModule: true });
               return await message.channel.send('The Snippets module is now enabled.');
@@ -127,14 +127,14 @@ module.exports = {
           break;
         }
         case 'welcomer': {
-          if (settings.welcomeModule == true) {
+          if (settings.welcomeModule) {
             try {
               await bot.updateGuild(message.guild, { welcomeModule: false });
               return await message.channel.send('The Welcome module is now disabled.');
             } catch (error) {
               await message.channel.send(`${bot.config.errMsg} \`${error.message}\``);
             }
-          } else if (settings.welcomeModule == false) {
+          } else {
             try {
               await bot.updateGuild(message.guild, { welcomeModule: true });
               return await message.channel.send('The Welcome module is now enabled.');
@@ -145,14 +145,14 @@ module.exports = {
           break;
         }
         case 'announcer': {
-          if (settings.announceModule == true) {
+          if (settings.announceModule) {
             try {
               await bot.updateGuild(message.guild, { announceModule: false });
               return await message.channel.send('The Announce module is now disabled.');
             } catch (error) {
               await message.channel.send(`${bot.config.errMsg} \`${error.message}\``);
             }
-          } else if (settings.announceModule == false) {
+          } else {
             try {
               await bot.updateGuild(message.guild, { announceModule: true });
               return await message.channel.send('The Announce module is now enabled.');

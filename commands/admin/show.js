@@ -125,7 +125,7 @@ module.exports = {
             welcomeMStyle = `\`\`\`${settings.welcomeMessage}\`\`\``;
           }
           let welcomePStyle;
-          if (settings.welcomePing == true) {
+          if (settings.welcomePing) {
             welcomePStyle = '`on`';
           } else {
             welcomePStyle = '`off`';
@@ -174,7 +174,7 @@ module.exports = {
             announceRStyle = `<@&${settings.announceRole}>`;
           }
           let announceTStyle;
-          if (settings.announceToggle == true) {
+          if (settings.announceToggle) {
             announceTStyle = '`on`';
           } else {
             announceTStyle = '`off`';
@@ -197,7 +197,7 @@ module.exports = {
           if (!settings.ticketCategory) {
             ticketCStyle = '`None`';
           } else {
-            const cate = message.guild.channels.find((c) => c.id == settings.ticketCategory);
+            const cate = message.guild.channels.find((c) => c.id === settings.ticketCategory);
             ticketCStyle = `\`${cate.name}\``;
           }
 
@@ -268,7 +268,7 @@ module.exports = {
       }
     }
     function checkBoolean(value) {
-      if (value == false) return value = 'disabled';
+      if (!value) return value = 'disabled';
       return value = 'enabled';
     }
   },

@@ -14,7 +14,7 @@ module.exports = async (bot, channel) => {
       console.error(` [ERROR] ${error.stack}`);
     }
     if (!settings) return;
-    if (settings.loggingModule == false) return;
+    if (!settings.loggingModule) return;
     let ignore;
     try {
       ignore = await bot.getIgnore(channel.guild.id);
@@ -22,7 +22,7 @@ module.exports = async (bot, channel) => {
       console.error(` [ERROR] ${error.stack}`);
     }
     if (!ignore) return;
-    if (ignore.chanLog == false) return;
+    if (!ignore.chanLog) return;
     if (!settings.serverChannel) return;
 
     const slog = channel.guild.channels.get(settings.serverChannel);
@@ -31,7 +31,7 @@ module.exports = async (bot, channel) => {
     const deltext = new Attachment('./assets/deltext.png', 'deltext.png');
     const delcategory = new Attachment('./assets/delcategory.png', 'delcategory.png');
 
-    if (channel.type == 'text') {
+    if (channel.type === 'text') {
       try {
         const embed = new RichEmbed()
           .setColor(bot.config.red)
@@ -47,7 +47,7 @@ module.exports = async (bot, channel) => {
         return;
       }
     }
-    if (channel.type == 'voice') {
+    if (channel.type === 'voice') {
       try {
         const embed = new RichEmbed()
           .setColor(bot.config.red)
@@ -63,7 +63,7 @@ module.exports = async (bot, channel) => {
         return;
       }
     }
-    if (channel.type == 'category') {
+    if (channel.type === 'category') {
       try {
         const embed = new RichEmbed()
           .setColor(bot.config.red)

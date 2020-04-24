@@ -15,7 +15,7 @@ module.exports = {
     category: 'support',
   },
   run: async (bot, message, args, settings) => {
-    if (settings.snipModule == false) return message.channel.send('Module disabled. Type `s!module snippets` to enable.');
+    if (!settings.snipModule) return message.channel.send('Module disabled. Type `s!module snippets` to enable.');
     try {
       if (args[0] === 'list') {
         let snipDoc;
@@ -67,7 +67,7 @@ module.exports = {
         .setTimestamp()
         .setFooter('Brought to you by Stacy', bot.user.displayAvatarURL);
 
-      if (snipDoc.trigger == trigger) {
+      if (snipDoc.trigger === trigger) {
         await message.channel.send(embed);
       }
     } catch (error) {

@@ -15,7 +15,7 @@ module.exports = {
     category: 'admin',
   },
   run: async (bot, message, args, settings) => {
-    if (settings.roleModule == false) return message.channel.send('Module disabled. Type `s!module roles` to enable.');
+    if (!settings.roleModule) return message.channel.send('Module disabled. Type `s!module roles` to enable.');
     try {
       if (!message.member.hasPermission('ADMINISTRATOR') && !message.member.roles.has(settings.adminRole)) return await message.channel.send(`${bot.config.errPerm}\nYou need the \`ADMINISTRATOR\` permission or the \`Admin\` role to perform this action.`);
 

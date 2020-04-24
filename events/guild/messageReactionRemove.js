@@ -7,7 +7,7 @@ module.exports = async (bot, reaction, user) => {
     if (user.bot) return;
     const member = await reaction.message.guild.members.get(user.id);
     // Help desk role removal
-    if (reaction._emoji.name == '❓') {
+    if (reaction._emoji.name === '❓') {
       let deskDoc;
       try {
         deskDoc = await bot.getDesk(reaction.message.channel);

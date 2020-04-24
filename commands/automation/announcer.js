@@ -50,10 +50,10 @@ module.exports = {
           break;
         }
         case 'toggle': {
-          if (settings.announceToggle == false) {
+          if (!settings.announceToggle) {
             await bot.updateGuild(message.guild, { announceToggle: true });
             return await message.channel.send('Announcement ping set to: `on`');
-          } if (settings.announceToggle == true) {
+          } if (settings.announceToggle) {
             try {
               await bot.updateGuild(message.guild, { announceToggle: false });
               return await message.channel.send('Announcement ping set to: `off`');
@@ -65,6 +65,8 @@ module.exports = {
           }
           break;
         }
+        default:
+          break;
       }
     } catch (error) {
       try {

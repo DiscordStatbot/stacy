@@ -31,7 +31,7 @@ module.exports = {
 
       message.channel.send('Ticket is being closed!').then(async () => {
         await message.channel.fetchMessages().then(async (messages) => {
-          const content = messages.filter((u) => u.author != bot.user && !u.content.startsWith(settings.prefix)).map((m) => `[ ${dateFormat(m.createdTimestamp, 'isoDateTime')} ] ${m.author.username} (${m.author.id}) - ${m.content}`).join('\n');
+          const content = messages.filter((u) => u.author !== bot.user && !u.content.startsWith(settings.prefix)).map((m) => `[ ${dateFormat(m.createdTimestamp, 'isoDateTime')} ] ${m.author.username} (${m.author.id}) - ${m.content}`).join('\n');
 
           try {
             await bot.updateTicket(userID, message.guild, test, { $set: { messages: `${content}\n\n Ticket closed by ${closer.username} (${closer.id})` } });

@@ -14,10 +14,10 @@ module.exports = {
     category: 'automation',
   },
   run: async (bot, message, args, settings) => {
-    if (settings.deskModule == false) return message.channel.send('Module disabled. Type `s!module desk` to enable. Requires Admin');
+    if (!settings.deskModule) return message.channel.send('Module disabled. Type `s!module desk` to enable. Requires Admin');
     try {
       if (!message.member.hasPermission('ADMINISTRATOR') && !message.member.roles.has(settings.adminRole)) return await message.channel.send(`${bot.config.errPerm}\nYou need the \`ADMINISTRATOR\` permission or the \`Admin\` role to perform this action.`);
-      if (args[0] == 'list') {
+      if (args[0] === 'list') {
         let allHelpDesk;
         try {
           allHelpDesk = await bot.getAllDesk(message.guild);
@@ -294,7 +294,7 @@ module.exports = {
             const helpDoc = helpDesk.qar;
 
             if (question) {
-              const qAr = helpDoc.filter((q) => q.question == question).map((m) => `**${m.question}**\n\n${m.response}`);
+              const qAr = helpDoc.filter((q) => q.question === question).map((m) => `**${m.question}**\n\n${m.response}`);
 
               embed.setDescription(qAr);
               return await message.channel.send(embed);
@@ -318,11 +318,11 @@ module.exports = {
             }
 
             for (let i = 0; i < helpDesk.qar.length; i++) {
-              if (helpDesk.qar[i].question == question) {
+              if (helpDesk.qar[i].question === question) {
                 return await message.channel.send('This response already exists!');
               }
             }
-            if (helpDesk.deskNum == 10) return message.channel.send('You can only add 10 questions to a help desk.');
+            if (helpDesk.deskNum === 10) return message.channel.send('You can only add 10 questions to a help desk.');
             try {
               await bot.updateDesk(hdChan, { $push: { qar: [{ question, response }] } });
               await bot.updateDesk(hdChan, { $inc: { deskNum: +1 } });
@@ -344,7 +344,7 @@ module.exports = {
             }
 
             for (let i = 0; i < helpDesk.qar.length; i++) {
-              if (!helpDesk.qar[i].question == question) {
+              if (!helpDesk.qar[i].question === question) {
                 return await message.channel.send('This response is already deleted!');
               }
             }

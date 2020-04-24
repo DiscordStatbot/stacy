@@ -23,7 +23,7 @@ module.exports = async (bot, message) => {
       console.error(` [ERROR] ${error.stack}`);
     }
     if (!settings) return;
-    if (settings.loggingModule == false) return;
+    if (!settings.loggingModule) return;
     let ignore;
     try {
       ignore = await bot.getIgnore(message.guild.id);
@@ -31,7 +31,7 @@ module.exports = async (bot, message) => {
       console.error(` [ERROR] ${error.stack}`);
     }
     if (!ignore) return;
-    if (ignore.msgLog == false || ignore.msgDelete.includes(message.channel.id)) return;
+    if (!ignore.msgLog || ignore.msgDelete.includes(message.channel.id)) return;
 
     if (!settings.messageChannel) return;
     if (message.author.bot || message.content.startsWith(settings.prefix)) return;

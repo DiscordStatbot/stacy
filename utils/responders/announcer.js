@@ -3,16 +3,16 @@
 'use strict';
 
 module.exports = async (bot, message, settings) => {
-  if (settings.announceModule == false) return;
+  if (!settings.announceModule) return;
   try {
-    if (settings.announceChannel && settings.announceRole && settings.announceToggle == true) {
-      if (message.channel.id == settings.announceChannel) {
+    if (settings.announceChannel && settings.announceRole && settings.announceToggle) {
+      if (message.channel.id === settings.announceChannel) {
         const role = message.guild.roles.get(settings.announceRole);
         const chan = message.guild.channels.get(settings.announceChannel);
 
         if (!role && !chan) return;
 
-        if (role.mentionable == false) {
+        if (!role.mentionable) {
           await role.edit({ mentionable: true }).then(async () => {
             await chan.send(`<@&${role.id}>`).then(async () => {
               await role.edit({ mentionable: false });

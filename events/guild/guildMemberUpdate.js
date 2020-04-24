@@ -13,7 +13,7 @@ module.exports = async (bot, oldMember, newMember) => {
     } catch (error) {
       console.error(` [ERROR] ${error.stack}`);
     }
-    if (settings.loggingModule == false) return;
+    if (!settings.loggingModule) return;
     let ignore;
     try {
       ignore = await bot.getIgnore(oldMember.guild.id);
@@ -21,7 +21,7 @@ module.exports = async (bot, oldMember, newMember) => {
       console.error(` [ERROR] ${error.stack}`);
     }
     if (!ignore || !settings) return;
-    if (ignore.memLog == false) return;
+    if (!ignore.memLog) return;
     const mlog = oldMember.guild.channels.get(settings.memberChannel);
 
     const roles1 = oldMember._roles.filter((o) => newMember._roles.indexOf(o) === -1);

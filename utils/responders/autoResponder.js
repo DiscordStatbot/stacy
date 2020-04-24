@@ -6,7 +6,7 @@ module.exports = async (bot, message, settings, ignore) => {
   try {
     if (!settings) return;
     if (!ignore) return;
-    if (settings.autoModule == false) return;
+    if (!settings.autoModule) return;
     if (message.content.startsWith(settings.prefix)) return;
     if (message.channel.name.startsWith('ticket-')) return;
     if (message.channel.id === settings.welcomeChannel) return;
@@ -28,7 +28,7 @@ module.exports = async (bot, message, settings, ignore) => {
     for (let i = 0; i < responderDoc.length; i++) {
       arr = responderDoc[i].question.split(' ');
       const isEvery = arr.every((item) => str.includes(item));
-      if (isEvery == true) {
+      if (isEvery) {
         return message.channel.send(responderDoc[i].response).then(async () => {
           await bot.updateResponse(message.guild, responderDoc[i].question, { $inc: { autoStat: +1 } });
         });

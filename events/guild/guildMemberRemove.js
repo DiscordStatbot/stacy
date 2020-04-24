@@ -12,7 +12,7 @@ module.exports = async (bot, member) => {
     } catch (error) {
       console.error(` [ERROR] ${error.stack}`);
     }
-    if (settings.loggingModule == false) return;
+    if (!settings.loggingModule) return;
     let ignore;
     try {
       ignore = await bot.getIgnore(member.guild.id);
@@ -20,7 +20,7 @@ module.exports = async (bot, member) => {
       console.error(` [ERROR] ${error.stack}`);
     }
     if (!ignore || !settings) return;
-    if (ignore.memLog == false) return;
+    if (!ignore.memLog) return;
     const mlogs = member.guild.channels.get(settings.memberChannel);
 
     if (member.user.bot) {

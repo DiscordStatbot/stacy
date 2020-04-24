@@ -14,14 +14,14 @@ module.exports = {
     category: 'ticket',
   },
   run: async (bot, message, args, settings) => {
-    if (settings.ticketModule == false) return message.channel.send('Module disabled. Type `s!module tickets` to enable. Requires Admin');
+    if (!settings.ticketModule) return message.channel.send('Module disabled. Type `s!module tickets` to enable. Requires Admin');
     try {
       if (!settings.ticketCategory || !settings.supportRole || !settings.ticketLog) return;
       if (!settings.supportRole) return await message.channel.send(`Please setup the admin or support or mod role with the \`${settings.prefix}settings\` command`);
       if (!message.member.hasPermission('ADMINISTRATOR') && !message.member.roles.has(settings.supportRole) && !message.member.roles.has(settings.adminRole)) return await message.channel.send(`${bot.config.errPerm}\nYou need this servers \`Support\` or \`Admin\` role to perform this action.`);
 
       const user = message.mentions.members.first() || message.guild.members.get(args[0]);
-      const active = message.guild.channels.find((c) => c.name === `ticket-${user.id}`);
+      const active = message.guild.channels.find((c) => c.name ==== `ticket-${user.id}`);
       const ticketMsg = `User Name: ${user.user.username}\nUser ID: ${user.id}\n=======================\nTicket Created at: ${dateFormat(message.createdTimestamp, 'isoDateTime')}\nTicket Message: 'New Staff created Ticket'`;
       if (!user) return message.channel.send('Specify user please.');
       if (active) {

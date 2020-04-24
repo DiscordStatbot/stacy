@@ -13,7 +13,7 @@ module.exports = async (bot, role) => {
       console.error(` [ERROR] ${error.stack}`);
     }
     if (!settings) return;
-    if (settings.loggingModule == false) return;
+    if (!settings.loggingModule) return;
     let ignore;
     try {
       ignore = await bot.getIgnore(role.guild.id);
@@ -21,7 +21,7 @@ module.exports = async (bot, role) => {
       console.error(` [ERROR] ${error.stack}`);
     }
     if (!ignore) return;
-    if (ignore.roleLog == false) return;
+    if (!ignore.roleLog) return;
 
     if (!settings.serverChannel) return;
 

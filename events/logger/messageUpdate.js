@@ -16,7 +16,7 @@ module.exports = async (bot, oldMessage, newMessage) => {
       console.error(` [ERROR] ${error.stack}`);
     }
     if (!settings) return;
-    if (settings.loggingModule == false) return;
+    if (!settings.loggingModule) return;
     let ignore;
     try {
       ignore = await bot.getIgnore(oldMessage.guild.id);
@@ -24,7 +24,7 @@ module.exports = async (bot, oldMessage, newMessage) => {
       console.error(` [ERROR] ${error.stack}`);
     }
     if (!ignore) return;
-    if (ignore.msgLog == false || ignore.msgDelete.includes(oldMessage.channel.id)) return;
+    if (!ignore.msgLog || ignore.msgDelete.includes(oldMessage.channel.id)) return;
 
     if (!settings.messageChannel) return;
     if (oldMessage.content.includes('http')) return;

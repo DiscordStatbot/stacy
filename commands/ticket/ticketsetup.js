@@ -60,7 +60,7 @@ module.exports = {
       case 'commands': {
         const ticket = new RichEmbed()
           .setColor(bot.config.yellow)
-          .setDescription(`The bot prefix is: \`${settings.prefix}\`\n**------------------------------**\n${bot.commands.filter((c) => c.config.category == 'ticket').map((c) => `**${c.config.name}** | ${c.config.description}`).join('\n')}\n**------------------------------**\n`)
+          .setDescription(`The bot prefix is: \`${settings.prefix}\`\n**------------------------------**\n${bot.commands.filter((c) => c.config.category === 'ticket').map((c) => `**${c.config.name}** | ${c.config.description}`).join('\n')}\n**------------------------------**\n`)
           .setFooter('< > is requiredand [ ] is optional');
 
         await message.channel.send(ticket);

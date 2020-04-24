@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = async (bot, message) => {
-  if (message.author.bot || message.guild.id != bot.config.guild) return;
+  if (message.author.bot || message.guild.id !== bot.config.guild) return;
 
   // Checks permissions here.
   if (!message.guild.me.hasPermission(bot.config.perms)) {
@@ -62,7 +62,7 @@ module.exports = async (bot, message) => {
   if (ignore.commandsDisable.includes(message.channel.id) || ignore.commandsDisable.includes(message.channel.parentID)) return;
   if (bot.cooldown.has(message.author.id) && message.content.startsWith(prefix)) return message.channel.send('**Not so fast!**\n\nPlease wait 3 seconds before using another command.');
 
-  if (message.author.id != bot.config.owner && message.content.startsWith(prefix)) {
+  if (message.author.id !== bot.config.owner && message.content.startsWith(prefix)) {
     bot.cooldown.add(message.author.id);
     setTimeout(() => {
       bot.cooldown.delete(message.author.id);

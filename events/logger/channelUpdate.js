@@ -14,7 +14,7 @@ module.exports = async (bot, oldChannel, newChannel) => {
       console.error(` [ERROR] ${error.stack}`);
     }
     if (!settings) return;
-    if (settings.loggingModule == false) return;
+    if (!settings.loggingModule) return;
     let ignore;
     try {
       ignore = await bot.getIgnore(oldChannel.guild.id);
@@ -22,7 +22,7 @@ module.exports = async (bot, oldChannel, newChannel) => {
       console.error(` [ERROR] ${error.stack}`);
     }
     if (!ignore) return;
-    if (ignore.chanLog == false) return;
+    if (!ignore.chanLog) return;
     if (!settings.serverChannel) return;
     const slog = oldChannel.guild.channels.get(settings.serverChannel);
 
@@ -30,7 +30,7 @@ module.exports = async (bot, oldChannel, newChannel) => {
     const uptext = new Attachment('./assets/uptext.png', 'uptext.png');
     const upcategory = new Attachment('./assets/upcategory.png', 'upcategory.png');
 
-    if (oldChannel.name != newChannel.name && newChannel.type == 'text') {
+    if (oldChannel.name !== newChannel.name && newChannel.type === 'text') {
       try {
         const embed = new RichEmbed()
           .setColor(bot.config.blue)
@@ -46,7 +46,7 @@ module.exports = async (bot, oldChannel, newChannel) => {
         return;
       }
     }
-    if (oldChannel.name != newChannel.name && newChannel.type == 'voice') {
+    if (oldChannel.name !== newChannel.name && newChannel.type === 'voice') {
       try {
         const embed = new RichEmbed()
           .setColor(bot.config.blue)
@@ -62,7 +62,7 @@ module.exports = async (bot, oldChannel, newChannel) => {
         return;
       }
     }
-    if (oldChannel.name != newChannel.name && newChannel.type == 'category') {
+    if (oldChannel.name !== newChannel.name && newChannel.type === 'category') {
       try {
         const embed = new RichEmbed()
           .setColor(bot.config.blue)

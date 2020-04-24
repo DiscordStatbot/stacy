@@ -14,7 +14,7 @@ module.exports = {
     category: 'ticket',
   },
   run: async (bot, message, args, settings) => {
-    if (settings.ticketModule == false) return message.channel.send('Module disabled. Type `s!module tickets` to enable. Requires Admin');
+    if (!settings.ticketModule) return message.channel.send('Module disabled. Type `s!module tickets` to enable. Requires Admin');
     try {
       if (!settings.ticketCategory || !settings.supportRole || !settings.ticketLog) return;
       const active = message.guild.channels.find((c) => c.name === `ticket-${message.author.id}`);

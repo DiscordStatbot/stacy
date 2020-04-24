@@ -26,28 +26,28 @@ module.exports = class Menu {
   }
 
   createCollector(uid) {
-    const collector = this.msg.createReactionCollector((r, u) => u.id == uid, { time: this.time });
+    const collector = this.msg.createReactionCollector((r, u) => u.id === uid, { time: this.time });
     this.collector = collector;
     collector.on('collect', (r) => {
-      if (r.emoji.name == this.reactions.back) {
-        if (this.page != 1) this.select(this.page - 1);
-      } else if (r.emoji.name == this.reactions.one) {
-        if (this.page != 1) this.select(1);
-      } else if (r.emoji.name == this.reactions.two) {
-        if (this.page != 2) this.select(2);
-      } else if (r.emoji.name == this.reactions.three) {
-        if (this.page != 3) this.select(3);
-      } else if (r.emoji.name == this.reactions.four) {
-        if (this.page != 4) this.select(4);
-      } else if (r.emoji.name == this.reactions.five) {
-        if (this.page != 5) this.select(5);
-      } else if (r.emoji.name == this.reactions.six) {
-        if (this.page != 6) this.select(6);
-      } else if (r.emoji.name == this.reactions.next) {
-        if (this.page != this.pages.length) this.select(this.page + 1);
-      } else if (r.emoji.name == this.reactions.stop) {
+      if (r.emoji.name === this.reactions.back) {
+        if (this.page !== 1) this.select(this.page - 1);
+      } else if (r.emoji.name === this.reactions.one) {
+        if (this.page !== 1) this.select(1);
+      } else if (r.emoji.name === this.reactions.two) {
+        if (this.page !== 2) this.select(2);
+      } else if (r.emoji.name === this.reactions.three) {
+        if (this.page !== 3) this.select(3);
+      } else if (r.emoji.name === this.reactions.four) {
+        if (this.page !== 4) this.select(4);
+      } else if (r.emoji.name === this.reactions.five) {
+        if (this.page !== 5) this.select(5);
+      } else if (r.emoji.name === this.reactions.six) {
+        if (this.page !== 6) this.select(6);
+      } else if (r.emoji.name === this.reactions.next) {
+        if (this.page !== this.pages.length) this.select(this.page + 1);
+      } else if (r.emoji.name === this.reactions.stop) {
         collector.stop();
-      } else if (r.emoji.name == this.reactions.del) {
+      } else if (r.emoji.name === this.reactions.del) {
         this.msg.delete();
         collector.stop();
       }

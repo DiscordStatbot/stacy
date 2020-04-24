@@ -11,7 +11,7 @@ module.exports = async (bot, oldGuild, newGuild) => {
   }
   if (!settings) return;
 
-  if (oldGuild.ownerID == newGuild.ownerID) return;
+  if (oldGuild.ownerID === newGuild.ownerID) return;
 
   try {
     await bot.uodateGuild(oldGuild, { ownerID: newGuild.ownerID });

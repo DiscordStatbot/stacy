@@ -14,7 +14,7 @@ module.exports = {
     category: 'ticket',
   },
   run: async (bot, message, args, settings) => {
-    if (settings.ticketModule == false) return message.channel.send('Module disabled. Type `s!module tickets` to enable. Requires Admin');
+    if (!settings.ticketModule) return message.channel.send('Module disabled. Type `s!module tickets` to enable. Requires Admin');
     try {
       if (!settings.ticketCategory) return await message.channel.send(`Please setup the ticket system with the \`${settings.prefix}settings\` command`);
       if (!settings.supportRole) return await message.channel.send(`Please setup the admin or support or mod role with the \`${settings.prefix}settings\` command`);

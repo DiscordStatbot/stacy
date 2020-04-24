@@ -13,7 +13,7 @@ module.exports = async (bot, oldRole, newRole) => {
       console.error(` [ERROR] ${error.stack}`);
     }
     if (!settings) return;
-    if (settings.loggingModule == false) return;
+    if (!settings.loggingModule) return;
     let ignore;
     try {
       ignore = await bot.getIgnore(oldRole.guild.id);
@@ -21,7 +21,7 @@ module.exports = async (bot, oldRole, newRole) => {
       console.error(` [ERROR] ${error.stack}`);
     }
     if (!ignore) return;
-    if (ignore.roleLog == false) return;
+    if (!ignore.roleLog) return;
 
     if (!settings.serverChannel) return;
 
@@ -29,7 +29,7 @@ module.exports = async (bot, oldRole, newRole) => {
 
     const uprole = new Attachment('./assets/uprole.png', 'uprole.png');
 
-    if (oldRole.name != newRole.name) {
+    if (oldRole.name !== newRole.name) {
       try {
         const embed = new RichEmbed()
           .setColor(bot.config.blue)
@@ -55,7 +55,7 @@ module.exports = async (bot, oldRole, newRole) => {
 
     if (!roleDoc) return;
 
-    if (roleDoc && roleDoc.roleName != newRole.name && roleDoc.roleName === oldRole.name) {
+    if (roleDoc && roleDoc.roleName !== newRole.name && roleDoc.roleName === oldRole.name) {
       try {
         return await bot.updateJoin(oldRole, { roleName: newRole.name });
       } catch (error) {

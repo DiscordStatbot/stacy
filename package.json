@@ -17,6 +17,7 @@
     "fs-extra": "^8.0.1",
     "mathjs": "^6.1.0",
     "mongoose": "^5.5.9",
+    "ms": "^2.1.2",
     "number-to-words": "^1.2.4"
   },
   "devDependencies": {

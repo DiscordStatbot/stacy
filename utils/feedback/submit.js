@@ -2,7 +2,7 @@
 
 module.exports = async (bot, message, settings) => {
   // Feature Requests system. This has not been implemented into the Open source version and has to be removed for open source.
-  if (message.channel.id == '407479769458933760') {
+  if (message.channel.id === '407479769458933760') {
     if (!message.content.toLowerCase().startsWith('**suggestion:**') && !message.content.toLowerCase().startsWith('**suggestion**') && !message.content.toLowerCase().startsWith('suggestion') && !message.content.toLowerCase().startsWith('suggestion:')) return;
     if (!message.content.toLowerCase().includes('**explanation:**') && !message.content.toLowerCase().includes('**explanation**') && !message.content.toLowerCase().includes('explanation') && !message.content.toLowerCase().includes('explanation:')) return;
     const feedback = message.content || 'None';

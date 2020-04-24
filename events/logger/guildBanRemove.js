@@ -13,7 +13,7 @@ module.exports = async (bot, guild, user) => {
       console.error(` [ERROR] ${error.stack}`);
     }
     if (!settings) return;
-    if (settings.loggingModule == false) return;
+    if (!settings.loggingModule) return;
     let ignore;
     try {
       ignore = await bot.getIgnore(guild.id);
@@ -21,7 +21,7 @@ module.exports = async (bot, guild, user) => {
       console.error(` [ERROR] ${error.stack}`);
     }
     if (!ignore) return;
-    if (ignore.modLog == false) return;
+    if (!ignore.modLog) return;
 
     if (!settings.modChannel) return;
 

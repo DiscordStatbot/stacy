@@ -10,14 +10,14 @@ module.exports = async (bot, reaction, user) => {
     const member = await reaction.message.guild.members.get(user.id);
     if (!member) return;
     // Feature system for Statbot server. Have not implemented this into the DB. For open source this section needs to be deleted.
-    if (reaction.message.channel.id == '590650996137525254') {
+    if (reaction.message.channel.id === '590650996137525254') {
       const contentArray = reaction.message.content.split('\n');
       const userIdent = contentArray[1];
 
-      if (reaction._emoji.name == '🚫') {
+      if (reaction._emoji.name === '🚫') {
         reaction.message.delete(5000);
       }
-      if (reaction._emoji.name == '🇫') {
+      if (reaction._emoji.name === '🇫') {
         reaction.message.react('✔');
 
         const feedMsg = reaction.message.content;
@@ -44,7 +44,7 @@ module.exports = async (bot, reaction, user) => {
           });
         });
       }
-      if (reaction._emoji.name == '🇧') {
+      if (reaction._emoji.name === '🇧') {
         reaction.message.react('✔');
         const feedMsg = reaction.message.content;
         const botFeed = reaction.message.guild.channels.get('590651024587358209');
@@ -70,7 +70,7 @@ module.exports = async (bot, reaction, user) => {
           });
         });
       }
-      if (reaction._emoji.name == '🇸') {
+      if (reaction._emoji.name === '🇸') {
         reaction.message.react('✔');
         const feedMsg = reaction.message.content;
         const siteFeed = reaction.message.guild.channels.get('590651053926776832');
@@ -98,7 +98,7 @@ module.exports = async (bot, reaction, user) => {
       }
     }
 
-    if (reaction._emoji.name == '✅' && reaction.message.channel.id == '590651196981903365') {
+    if (reaction._emoji.name === '✅' && reaction.message.channel.id === '590651196981903365') {
       let feedDoc;
       try {
         feedDoc = await bot.getFeed(reaction.message.id);
@@ -121,14 +121,14 @@ module.exports = async (bot, reaction, user) => {
     }
 
     // Help desk role reaction.
-    if (reaction._emoji.name == '❓') {
+    if (reaction._emoji.name === '❓') {
       let deskDoc;
       try {
         deskDoc = await bot.getDesk(reaction.message.channel);
       } catch (error) {
         console.error(` [ERROR] ${error.stack}`);
       }
-      if (deskDoc && deskDoc.deskChannel == reaction.message.channel.id && deskDoc.defaultRole) {
+      if (deskDoc && deskDoc.deskChannel === reaction.message.channel.id && deskDoc.defaultRole) {
         const helpRole = reaction.message.guild.roles.get(deskDoc.defaultRole);
         const newTimer = {
           guildID: reaction.message.guild.id,

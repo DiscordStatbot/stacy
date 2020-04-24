@@ -88,7 +88,7 @@ module.exports = {
         case 'log': {
           switch (type) {
             case 'mod': {
-              if (ignore.modLog == true) {
+              if (ignore.modLog) {
                 try {
                   await bot.updateIgnore(message.guild.id, { modLog: false });
                   await message.channel.send('Now ignoring Moderation Logging');
@@ -101,7 +101,7 @@ module.exports = {
               break;
             }
             case 'message': {
-              if (ignore.msgLog == true) {
+              if (ignore.msgLog) {
                 try {
                   await bot.updateIgnore(message.guild.id, { msgLog: false });
                   await message.channel.send('Now ignoring Message Logging');
@@ -114,7 +114,7 @@ module.exports = {
               break;
             }
             case 'member': {
-              if (ignore.memLog == true) {
+              if (ignore.memLog) {
                 try {
                   await bot.updateIgnore(message.guild.id, { memLog: false });
                   await message.channel.send('Now ignoring Member Logging');
@@ -127,7 +127,7 @@ module.exports = {
               break;
             }
             case 'channel': {
-              if (ignore.chanLog == true) {
+              if (ignore.chanLog) {
                 try {
                   await bot.updateIgnore(message.guild.id, { chanLog: false });
                   await message.channel.send('Now ignoring Channel Logging');
@@ -140,7 +140,7 @@ module.exports = {
               break;
             }
             case 'role': {
-              if (ignore.roleLog == true) {
+              if (ignore.roleLog) {
                 try {
                   await bot.updateIgnore(message.guild.id, { roleLog: false });
                   await message.channel.send('Now ignoring Role Logging');

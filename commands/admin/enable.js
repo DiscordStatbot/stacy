@@ -83,7 +83,7 @@ module.exports = {
         case 'log': {
           switch (type) {
             case 'mod': {
-              if (ignore.modLog == false) {
+              if (!ignore.modLog) {
                 try {
                   await bot.updateIgnore(message.guild.id, { modLog: true });
                   await message.channel.send('Now logging Moderation.');
@@ -96,7 +96,7 @@ module.exports = {
               break;
             }
             case 'message': {
-              if (ignore.msgLog == false) {
+              if (!ignore.msgLog) {
                 try {
                   await bot.updateIgnore(message.guild.id, { msgLog: true });
                   await message.channel.send('Now logging Messages');
@@ -109,7 +109,7 @@ module.exports = {
               break;
             }
             case 'member': {
-              if (ignore.memLog == false) {
+              if (!ignore.memLog) {
                 try {
                   await bot.updateIgnore(message.guild.id, { memLog: true });
                   await message.channel.send('Now logging Members');
@@ -122,7 +122,7 @@ module.exports = {
               break;
             }
             case 'channel': {
-              if (ignore.chanLog == false) {
+              if (!ignore.chanLog) {
                 try {
                   await bot.updateIgnore(message.guild.id, { chanLog: true });
                   await message.channel.send('Now logging Channels');
@@ -135,7 +135,7 @@ module.exports = {
               break;
             }
             case 'role': {
-              if (ignore.roleLog == false) {
+              if (!ignore.roleLog) {
                 try {
                   await bot.updateIgnore(message.guild.id, { roleLog: true });
                   await message.channel.send('Now logging Role');

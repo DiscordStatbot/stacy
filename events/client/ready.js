@@ -13,6 +13,6 @@ module.exports = async (bot) => {
   bot.user.setActivity('Booting...', { type: 'WATCHING' });
 
   bot.setInterval(() => {
-    bot.user.setActivity('the help desk', { type: 'WATCHING' });
+    bot.user.setActivity('the help desk | s!help', { type: 'WATCHING' });
   }, 60000);
 };

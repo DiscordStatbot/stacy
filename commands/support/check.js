@@ -48,8 +48,8 @@ module.exports = {
         }
         case 'server': {
           const roles = message.guild.roles.map((r) => ` \`${r.name} \``).slice(1).join(' | ');
-          const textChannels = message.guild.channels.filter((c) => c.type == 'text').map((c) => ` \`${c.name}\``).join(' | ');
-          const voiceChannels = message.guild.channels.filter((c) => c.type == 'voice').map((c) => ` \`${c.name}\``).join(' | ');
+          const textChannels = message.guild.channels.filter((c) => c.type === 'text').map((c) => ` \`${c.name}\``).join(' | ');
+          const voiceChannels = message.guild.channels.filter((c) => c.type === 'voice').map((c) => ` \`${c.name}\``).join(' | ');
           const createdAt = dateFormat(message.guild.createdAt);
 
           const embed = new RichEmbed()

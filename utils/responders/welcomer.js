@@ -13,7 +13,7 @@ module.exports = async (bot, member) => {
       return;
     }
     if (!settings) return;
-    if (settings.welcomeModule == false) return;
+    if (!settings.welcomeModule) return;
     if (settings.welcomeChannel && settings.welcomeMessage && !member.user.bot) {
       try {
         const msg = settings.welcomeMessage.replace('{user}', `<@${member.id}>`);
@@ -29,7 +29,7 @@ module.exports = async (bot, member) => {
           .setFooter(`Member Count: ${member.guild.memberCount}`, member.guild.iconURL)
           .setTimestamp();
 
-        if (settings.welcomePing == true) {
+        if (settings.welcomePing) {
           if (settings.welcomeImage) {
             attach = new Attachment(`./welcomeImages/${settings.welcomeImage}`);
             embed.attachFile(attach)
