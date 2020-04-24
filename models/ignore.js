@@ -1,3 +1,5 @@
+'use strict';
+
 const mongoose = require('mongoose');
 
 const ignoreSchema = mongoose.Schema({
@@ -9,23 +11,23 @@ const ignoreSchema = mongoose.Schema({
   commandsDisable: Array,
   chanLog: {
     type: Boolean,
-    default: true
+    default: true,
   },
   roleLog: {
     type: Boolean,
-    default: true
+    default: true,
   },
   msgLog: {
     type: Boolean,
-    default: true
+    default: true,
   },
   modLog: {
     type: Boolean,
-    default: true
+    default: true,
   },
   memLog: {
     type: Boolean,
-    default: true
+    default: true,
   },
 
 });

@@ -1,3 +1,5 @@
+'use strict';
+
 const mongoose = require('mongoose');
 
 const ticketSchema = mongoose.Schema({
@@ -6,7 +8,7 @@ const ticketSchema = mongoose.Schema({
   userID: String,
   createdAt: String,
   ticket: String,
-  messages: String
+  messages: String,
 
 });
 

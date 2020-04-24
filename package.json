@@ -20,6 +20,8 @@
     "number-to-words": "^1.2.4"
   },
   "devDependencies": {
-    "eslint": "^5.16.0"
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.20.1"
   }
 }

@@ -1,3 +1,5 @@
+'use strict';
+
 const mongoose = require('mongoose');
 
 const timerSchema = mongoose.Schema({
@@ -5,7 +7,7 @@ const timerSchema = mongoose.Schema({
   guildID: String,
   userID: String,
   roleID: String,
-  time: Number
+  time: Number,
 });
 
 module.exports = mongoose.model('Timer', timerSchema);

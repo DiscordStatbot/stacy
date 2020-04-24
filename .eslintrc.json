@@ -1,36 +1,38 @@
 {
-    "extends": "eslint:recommended",
     "env": {
         "node": true,
-        "es6": true
+        "mocha": true
+    },
+    "extends": [
+        "airbnb-base"
+    ],
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly",
+        "BigInt": true
     },
     "parserOptions": {
-        "ecmaVersion": 2018,
-        "sourceType": "module"
+        "sourceType": "script",
+        "ecmaFeatures": {
+            "modules": false
+        }
     },
     "rules": {
-        "no-console": "off",
-        "no-unused-vars": "off",
-        "block-scoped-var": "error",
-        "curly": ["error", "multi-line"],
-        "no-empty-function": "off",
-        "no-labels": "error",
-        "no-lone-blocks": "error",
-        "no-useless-return": "off",
-        "no-multiple-empty-lines": [
-            "error", { 
-                "max": 1, 
-                "maxEOF": 1 
-                }
-            ],
-        "semi": "error",
-        "indent": [
-            "error",
-            2
+        "no-underscore-dangle": "off",
+        "no-bitwise": "off",
+        "no-plusplus": "off",
+        "no-restricted-syntax": "off",
+        "no-unused-expressions": "off",
+        "no-param-reassign": "off",
+        "global-require": "off",
+        "no-use-before-define": "off",
+        "strict": [
+            2,
+            "global"
         ],
-        "quotes": [
-            "warn",
-            "single"
-        ]
+        "max-len": "warn",
+        "camelcase": "warn",
+        "prefer-const": "warn",
+        "no-await-in-loop": "warn"
     }
 }

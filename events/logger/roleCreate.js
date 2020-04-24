@@ -1,35 +1,36 @@
 // Triggers the logging if it is setup.
 
+'use strict';
+
 const { RichEmbed, Attachment } = require('discord.js');
 
 module.exports = async (bot, role) => {
-  try{
-
+  try {
     let settings;
     try {
       settings = await bot.getGuild(role.guild);
     } catch (error) {
       console.error(` [ERROR] ${error.stack}`);
     }
-    if(!settings) return;
-    if(settings.loggingModule == false) return;
+    if (!settings) return;
+    if (settings.loggingModule == false) return;
     let ignore;
     try {
       ignore = await bot.getIgnore(role.guild.id);
     } catch (error) {
       console.error(` [ERROR] ${error.stack}`);
     }
-    if(!ignore) return;
-    if(ignore.roleLog == false) return;
+    if (!ignore) return;
+    if (ignore.roleLog == false) return;
 
-    if(!settings.serverChannel) return;
+    if (!settings.serverChannel) return;
 
-    let slog = role.guild.channels.get(settings.serverChannel);
-  
+    const slog = role.guild.channels.get(settings.serverChannel);
+
     const rols = new Attachment('./assets/role.png', 'role.png');
-  
-    try{
-      let embed = new RichEmbed()
+
+    try {
+      const embed = new RichEmbed()
         .setColor(bot.config.green)
         .setTitle('Role Created')
         .attachFile(rols)
@@ -39,10 +40,10 @@ module.exports = async (bot, role) => {
         .setTimestamp();
 
       await slog.send(embed);
-    }catch (error) {
-      return;
+    } catch (error) {
+
     }
-  }catch(erro){
-    return;
+  } catch (erro) {
+
   }
 };

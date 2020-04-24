@@ -1,3 +1,5 @@
+'use strict';
+
 const mongoose = require('mongoose');
 
 const autoSchema = mongoose.Schema({
@@ -7,8 +9,8 @@ const autoSchema = mongoose.Schema({
   response: String,
   autoStat: {
     type: Number,
-    default: 0
-  }
+    default: 0,
+  },
 });
 
-module.exports =  mongoose.model('AutoResponse', autoSchema);
+module.exports = mongoose.model('AutoResponse', autoSchema);

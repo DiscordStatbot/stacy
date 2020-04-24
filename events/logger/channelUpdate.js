@@ -1,38 +1,38 @@
 // Triggers the logging if it is setup.
 
+'use strict';
+
 const { RichEmbed, Attachment } = require('discord.js');
 
 module.exports = async (bot, oldChannel, newChannel) => {
-  
-  try{
-    if(oldChannel.name.startsWith('ticket-')) return;
+  try {
+    if (oldChannel.name.startsWith('ticket-')) return;
     let settings;
     try {
       settings = await bot.getGuild(oldChannel.guild);
     } catch (error) {
       console.error(` [ERROR] ${error.stack}`);
     }
-    if(!settings) return;
-    if(settings.loggingModule == false) return;
+    if (!settings) return;
+    if (settings.loggingModule == false) return;
     let ignore;
     try {
       ignore = await bot.getIgnore(oldChannel.guild.id);
     } catch (error) {
       console.error(` [ERROR] ${error.stack}`);
     }
-    if(!ignore) return;
-    if(ignore.chanLog == false) return;
-    if(!settings.serverChannel) return;
-    let slog = oldChannel.guild.channels.get(settings.serverChannel);
-  
+    if (!ignore) return;
+    if (ignore.chanLog == false) return;
+    if (!settings.serverChannel) return;
+    const slog = oldChannel.guild.channels.get(settings.serverChannel);
+
     const upvoice = new Attachment('./assets/upspeaker.png', 'upspeaker.png');
     const uptext = new Attachment('./assets/uptext.png', 'uptext.png');
     const upcategory = new Attachment('./assets/upcategory.png', 'upcategory.png');
-  
-    if(oldChannel.name != newChannel.name && newChannel.type == 'text') {
-      try{
 
-        let embed = new RichEmbed()
+    if (oldChannel.name != newChannel.name && newChannel.type == 'text') {
+      try {
+        const embed = new RichEmbed()
           .setColor(bot.config.blue)
           .setTitle('Text channel Updated')
           .attachFile(uptext)
@@ -42,14 +42,13 @@ module.exports = async (bot, oldChannel, newChannel) => {
           .setTimestamp();
 
         await slog.send(embed);
-      }catch (error) {
+      } catch (error) {
         return;
       }
     }
-    if(oldChannel.name != newChannel.name && newChannel.type == 'voice') {
-      try{
-
-        let embed = new RichEmbed()
+    if (oldChannel.name != newChannel.name && newChannel.type == 'voice') {
+      try {
+        const embed = new RichEmbed()
           .setColor(bot.config.blue)
           .setTitle('Voice channel Updated')
           .attachFile(upvoice)
@@ -59,14 +58,13 @@ module.exports = async (bot, oldChannel, newChannel) => {
           .setTimestamp();
 
         await slog.send(embed);
-      }catch (error) {
+      } catch (error) {
         return;
       }
     }
-    if(oldChannel.name != newChannel.name && newChannel.type == 'category') {
-      try{
-
-        let embed = new RichEmbed()
+    if (oldChannel.name != newChannel.name && newChannel.type == 'category') {
+      try {
+        const embed = new RichEmbed()
           .setColor(bot.config.blue)
           .setTitle('Category Updated')
           .attachFile(upcategory)
@@ -76,11 +74,11 @@ module.exports = async (bot, oldChannel, newChannel) => {
           .setTimestamp();
 
         await slog.send(embed);
-      }catch (error) {
-        return;
+      } catch (error) {
+
       }
     }
-  }catch(erro){
-    return;
+  } catch (erro) {
+
   }
 };

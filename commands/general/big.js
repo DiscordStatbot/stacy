@@ -1,5 +1,7 @@
 // Makes emojis big.
 
+'use strict';
+
 const { RichEmbed } = require('discord.js');
 
 module.exports = {
@@ -9,38 +11,38 @@ module.exports = {
     usage: 'big <emoji>`',
     accessableby: 'Member',
     aliases: ['huge', 'emoji'],
-    category: 'general'
+    category: 'general',
   },
   run: async (bot, message, args, settings) => {
-    try{
-      var emj = args[0];
-      var regex = /<(?<anim>a?):(?<name>[a-zA-Z0-9\W_]+?):(?<id>\d+?)>/g;
-      var emojinfo = regex.exec(emj);
+    try {
+      const emj = args[0];
+      const regex = /<(?<anim>a?):(?<name>[a-zA-Z0-9\W_]+?):(?<id>\d+?)>/g;
+      const emojinfo = regex.exec(emj);
 
       if (!emojinfo) {
         return await message.reply('You can not use that emoji.');
       }
 
-      let aembed = new RichEmbed()
+      const aembed = new RichEmbed()
         .setColor(bot.config.yellow)
         .setImage(`https://cdn.discordapp.com/emojis/${emojinfo.groups.id}.gif?v=1`);
 
-      let nembed = new RichEmbed()
+      const nembed = new RichEmbed()
         .setColor(bot.config.yellow)
         .setImage(`https://cdn.discordapp.com/emojis/${emojinfo.groups.id}.png?v=1`);
 
       if (emj && args[1]) return await message.channel.send('Please use only one emoji.');
       if (emj && emojinfo.groups.anim) {
         await message.channel.send(aembed);
-      }else if (emj && !emojinfo.groups.anim) {
+      } else if (emj && !emojinfo.groups.anim) {
         await message.channel.send(nembed);
       }
-    }catch(error){
+    } catch (error) {
       try {
         await message.author.send(`${bot.config.errMsg}\n${error.message}`);
-      }catch(error) {
-        return;
+      } catch (error) {
+
       }
-    }        
-  }
+    }
+  },
 };

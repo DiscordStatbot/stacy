@@ -1,3 +1,5 @@
+'use strict';
+
 require('dotenv-flow').config();
 
 module.exports = {
@@ -11,7 +13,7 @@ module.exports = {
   green: '#a4fd4b',
   yellow: '#fdfd64',
   blue: '#bae1ff',
-  mongoURI:process.env.MONGO_URI,
+  mongoURI: process.env.MONGO_URI,
   defaultSettings: {
     prefix: 's!',
     welcomePing: false,

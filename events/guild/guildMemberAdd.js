@@ -1,33 +1,35 @@
 // Triggers the welcomer if it is set up and the logging if it is setup.
 
+'use strict';
+
 const { RichEmbed } = require('discord.js');
 const dateFormat = require('dateformat');
 const ms = require('ms');
 
 module.exports = async (bot, member) => {
-  require('./../../utils/responders/welcomer')(bot, member);
-  
-  try{
+  require('../../utils/responders/welcomer')(bot, member);
+
+  try {
     let settings;
     try {
       settings = await bot.getGuild(member.guild);
     } catch (error) {
       return;
     }
-    if(settings.loggingModule == false) return;
+    if (settings.loggingModule == false) return;
     let ignore;
     try {
       ignore = await bot.getIgnore(member.guild.id);
     } catch (error) {
       console.error(` [ERROR] ${error.stack}`);
     }
-    if(!ignore || !settings) return;
-    if(ignore.memLog == false) return;
-    let mlogs = member.guild.channels.get(settings.memberChannel);
+    if (!ignore || !settings) return;
+    if (ignore.memLog == false) return;
+    const mlogs = member.guild.channels.get(settings.memberChannel);
 
-    if(member.user.bot) {
-      try{
-        let embed = new RichEmbed()
+    if (member.user.bot) {
+      try {
+        const embed = new RichEmbed()
           .setColor(bot.config.green)
           .setTitle(`Member Count: ${member.guild.memberCount}`)
           .setThumbnail(member.user.displayAvatarURL)
@@ -36,12 +38,12 @@ module.exports = async (bot, member) => {
           .setTimestamp();
 
         await mlogs.send(embed);
-      }catch (error) {
-        return;
+      } catch (error) {
+
       }
-    }else {
-      try{
-        let embed = new RichEmbed()
+    } else {
+      try {
+        const embed = new RichEmbed()
           .setColor(bot.config.green)
           .setTitle(`Member Count: ${member.guild.memberCount}`)
           .setThumbnail(member.user.displayAvatarURL)
@@ -49,17 +51,17 @@ module.exports = async (bot, member) => {
           .setFooter(`Member logs of ${member.guild.name}`, member.guild.iconURL)
           .setTimestamp();
 
-        if(member.createdAt < ms('1d')){
+        if (member.createdAt < ms('1d')) {
           embed.addField('Account Age', `${dateFormat(member.user.createdAt)}`);
           await mlogs.send(embed);
-        }else {
+        } else {
           await mlogs.send(embed);
         }
-      }catch (error) {
-        return;
+      } catch (error) {
+
       }
     }
-  }catch(error){
-    return;
+  } catch (error) {
+
   }
 };

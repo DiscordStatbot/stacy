@@ -1,39 +1,39 @@
 // Triggers the logging if it is setup.
 
+'use strict';
+
 const { RichEmbed, Attachment } = require('discord.js');
 
 module.exports = async (bot, oldMessage, newMessage) => {
+  try {
+    if (oldMessage.channel.name.startsWith('ticket-')) return;
 
-  try{
-    if(oldMessage.channel.name.startsWith('ticket-')) return;
-
-    if(oldMessage.author.bot) return;
+    if (oldMessage.author.bot) return;
     let settings;
     try {
       settings = await bot.getGuild(oldMessage.guild);
     } catch (error) {
       console.error(` [ERROR] ${error.stack}`);
     }
-    if(!settings) return;
-    if(settings.loggingModule == false) return;
+    if (!settings) return;
+    if (settings.loggingModule == false) return;
     let ignore;
     try {
       ignore = await bot.getIgnore(oldMessage.guild.id);
     } catch (error) {
       console.error(` [ERROR] ${error.stack}`);
     }
-    if(!ignore) return;
-    if(ignore.msgLog == false || ignore.msgDelete.includes(oldMessage.channel.id)) return;
+    if (!ignore) return;
+    if (ignore.msgLog == false || ignore.msgDelete.includes(oldMessage.channel.id)) return;
 
-    if(!settings.messageChannel) return;
-    if(oldMessage.content.includes('http')) return;
-    let mlog = oldMessage.guild.channels.get(settings.messageChannel);
-  
+    if (!settings.messageChannel) return;
+    if (oldMessage.content.includes('http')) return;
+    const mlog = oldMessage.guild.channels.get(settings.messageChannel);
+
     const upmsg = new Attachment('./assets/upmsg.png', 'upmsg.png');
-  
-    try{
 
-      let embed = new RichEmbed()
+    try {
+      const embed = new RichEmbed()
         .setColor(bot.config.blue)
         .setTitle('Message Updated')
         .attachFile(upmsg)
@@ -43,10 +43,10 @@ module.exports = async (bot, oldMessage, newMessage) => {
         .setTimestamp();
 
       await mlog.send(embed);
-    }catch (error) {
-      return;
+    } catch (error) {
+
     }
-  }catch(erro){
-    return;
+  } catch (erro) {
+
   }
 };

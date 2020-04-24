@@ -1,22 +1,24 @@
 // Shows the bot prefix.
 
-module.exports = { 
+'use strict';
+
+module.exports = {
   config: {
     name: 'prefix',
     usage: 'prefix`',
     description: 'Show the prefix for your server.',
     accessableby: 'Members',
-    category: 'general'
+    category: 'general',
   },
   run: async (bot, message, args, settings) => {
-    try{
+    try {
       await message.channel.send(`My prefix is \`${settings.prefix}\``);
-    }catch(error){
+    } catch (error) {
       try {
         await message.author.send(`${bot.config.errMsg}\n${error.message}`);
-      }catch(error) {
-        return;
+      } catch (error) {
+
       }
     }
-  }
+  },
 };

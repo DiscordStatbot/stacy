@@ -1,3 +1,5 @@
+'use strict';
+
 const mongoose = require('mongoose');
 
 const deskSchema = mongoose.Schema({
@@ -12,16 +14,16 @@ const deskSchema = mongoose.Schema({
   roleMsg: String,
   deskNum: {
     type: Number,
-    default: 0
+    default: 0,
   },
-  qar:[{
+  qar: [{
     question: String,
     response: String,
     deskStat: {
       type: Number,
-      default: 0
-    }
-  }]
+      default: 0,
+    },
+  }],
 });
 
 module.exports = mongoose.model('HelpDesk', deskSchema);

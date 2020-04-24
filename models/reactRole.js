@@ -1,3 +1,5 @@
+'use strict';
+
 const mongoose = require('mongoose');
 
 const reactSchema = mongoose.Schema({
@@ -5,7 +7,7 @@ const reactSchema = mongoose.Schema({
   guildID: String,
   emoji: String,
   roleID: String,
-  messageID: String
+  messageID: String,
 });
 
 module.exports = mongoose.model('ReactRole', reactSchema);

@@ -1,35 +1,37 @@
 // Triggers the logging if it is setup.
 
+'use strict';
+
 const { RichEmbed, Attachment } = require('discord.js');
 
 module.exports = async (bot, oldRole, newRole) => {
-  try{
+  try {
     let settings;
     try {
       settings = await bot.getGuild(oldRole.guild);
     } catch (error) {
       console.error(` [ERROR] ${error.stack}`);
     }
-    if(!settings) return;
-    if(settings.loggingModule == false) return;
+    if (!settings) return;
+    if (settings.loggingModule == false) return;
     let ignore;
     try {
       ignore = await bot.getIgnore(oldRole.guild.id);
     } catch (error) {
       console.error(` [ERROR] ${error.stack}`);
     }
-    if(!ignore) return;
-    if(ignore.roleLog == false) return;
+    if (!ignore) return;
+    if (ignore.roleLog == false) return;
 
-    if(!settings.serverChannel) return;
+    if (!settings.serverChannel) return;
 
-    let slog = oldRole.guild.channels.get(settings.serverChannel);
-  
+    const slog = oldRole.guild.channels.get(settings.serverChannel);
+
     const uprole = new Attachment('./assets/uprole.png', 'uprole.png');
 
-    if(oldRole.name != newRole.name) {
-      try{
-        let embed = new RichEmbed()
+    if (oldRole.name != newRole.name) {
+      try {
+        const embed = new RichEmbed()
           .setColor(bot.config.blue)
           .setTitle('Role Updated')
           .attachFile(uprole)
@@ -39,7 +41,7 @@ module.exports = async (bot, oldRole, newRole) => {
           .setTimestamp();
 
         await slog.send(embed);
-      }catch (error) {
+      } catch (error) {
         return;
       }
     }
@@ -51,16 +53,16 @@ module.exports = async (bot, oldRole, newRole) => {
       console.error(` [ERROR] ${error.stack}`);
     }
 
-    if(!roleDoc) return;
+    if (!roleDoc) return;
 
     if (roleDoc && roleDoc.roleName != newRole.name && roleDoc.roleName === oldRole.name) {
-      try{
-        return await bot.updateJoin( oldRole , { roleName: newRole.name });
-      } catch(error){
+      try {
+        return await bot.updateJoin(oldRole, { roleName: newRole.name });
+      } catch (error) {
         console.error(` [ERROR] ${error.stack}`);
       }
     }
-  }catch(erro){
-    return;
+  } catch (erro) {
+
   }
 };

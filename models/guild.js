@@ -1,3 +1,5 @@
+'use strict';
+
 const mongoose = require('mongoose');
 
 const guildSchema = mongoose.Schema({
@@ -56,19 +58,19 @@ const guildSchema = mongoose.Schema({
   announceToggle: Boolean,
   deskChan: {
     type: Number,
-    default: 0
+    default: 0,
   },
   autoNum: {
     type: Number,
-    default: 0
+    default: 0,
   },
   joinNum: {
     type: Number,
-    default: 0
+    default: 0,
   },
   snipNum: {
     type: Number,
-    default: 0
+    default: 0,
   },
 
 });
